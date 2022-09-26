@@ -39,9 +39,7 @@ export async function getImgUrl(searchParams, setState) {
   await fetch(newUrl)
     .then((res) => res.json())
     .then((data) => {
-      console.log('data ', data);
       const defaultUrl = data.data[0].images.original.webp;
-
       const newSrc = convertUrltoUri(defaultUrl);
       setState(newSrc);
     });
