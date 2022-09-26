@@ -14,7 +14,9 @@ function App() {
   return (
     <div className="App">
       <CatText catFactText={catFactText} />
-      <GiphyImg imgParams={imgParams} />
+      {(imgParams !== '')
+        ? (<GiphyImg imgParams={imgParams} />)
+        : <h2>Loading</h2>}
     </div>
   );
 }
