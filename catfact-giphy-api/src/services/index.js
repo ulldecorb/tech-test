@@ -10,10 +10,16 @@ const catApi = 'https://catfact.ninja/fact';
 //   return catText;
 // }
 
-async function fetchCat(setState) {
-  await fetch(catApi)
-    .then((res) => res.json())
-    .then((data) => setState(data.fact));
+export function convertStringToSearchParam(str) {
+  return str.split(' ').map((letter) => letter.toLowerCase()).slice(0, 3).join('&20');
 }
 
-export default fetchCat;
+export async function fetchCat(setCatTextState, setSearchParam) {
+  await fetch(catApi)
+    .then((res) => res.json())
+    .then((data) => {
+      setCatTextState(data.fact);
+      const newSearchParam = convertStringToSearchParam(data.fact);
+      setSearchParam(newSearchParam);
+    });
+}

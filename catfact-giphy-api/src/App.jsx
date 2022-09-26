@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import fetchCat from './services';
+import { fetchCat } from './services';
 import { CatText } from './components/cat-text';
+import GiphyImg from './components/giphy-img';
 
 function App() {
   const [catFactText, setCatFactText] = useState('');
+  const [imgParams, setImgParams] = useState('');
 
   useEffect(() => {
-    fetchCat(setCatFactText);
+    fetchCat(setCatFactText, setImgParams);
   }, []);
 
   return (
     <div className="App">
       <CatText catFactText={catFactText} />
+      <GiphyImg imgParams={imgParams} />
     </div>
   );
 }
